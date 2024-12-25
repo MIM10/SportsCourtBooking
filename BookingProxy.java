@@ -1,4 +1,3 @@
-// File: BookingProxy.java
 class BookingProxy implements BookingService {
     private final BookingServiceImpl bookingService;
     private final String role;

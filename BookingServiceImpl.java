@@ -1,4 +1,3 @@
-// File: BookingServiceImpl.java
 class BookingServiceImpl implements BookingService {
     @Override
     public void manageSchedule() {

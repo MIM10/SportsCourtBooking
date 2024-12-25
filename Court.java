@@ -1,4 +1,3 @@
-// File: Court.java
 abstract class Court {
     protected String courtName;
     protected double pricePerHour;
