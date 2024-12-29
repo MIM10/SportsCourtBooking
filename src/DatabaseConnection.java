@@ -9,7 +9,7 @@ class DatabaseConnection {
     private DatabaseConnection() {
         try {
             // Connect to the existing database named "sportsdb"
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/sportsdb", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportsdb", "root", "");
             System.out.println("Connected to the database successfully.");
         } catch (SQLException e) {
             e.printStackTrace();
