@@ -7,12 +7,9 @@ public class DatabaseMigration {
         Connection connection = DatabaseConnection.getInstance().getConnection();
 
         try (Statement statement = connection.createStatement()) {
-            // SQL script to create the 'bookings' table
-
             String createCourtsTable = "CREATE TABLE IF NOT EXISTS courts ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "name VARCHAR(50) NOT NULL,"
-                + "type VARCHAR(50) NOT NULL,"
+                + "name VARCHAR(50) UNIQUE NOT NULL,"
                 + "price_per_hour DECIMAL(10, 2) NOT NULL"
                 + ");";
 
@@ -21,24 +18,30 @@ public class DatabaseMigration {
                 + "username VARCHAR(50) UNIQUE NOT NULL,"
                 + "password VARCHAR(255) NOT NULL,"
                 + "role ENUM('Admin', 'User') NOT NULL"
-                + ")";
+                + ");";
 
             String createBookingsTable = "CREATE TABLE IF NOT EXISTS bookings ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "court_type VARCHAR(50),"
+                + "court_id INT,"
                 + "time_slot VARCHAR(50),"
                 + "payment_method VARCHAR(50),"
-                + "status ENUM('Pending', 'Confirmed', 'Cancelled') DEFAULT 'Pending',"
                 + "price DECIMAL(10, 2),"
+                + " FOREIGN KEY (court_id) REFERENCES courts(id),"
                 + "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
                 + "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
                 + ");";
 
+            String insertCourt = "INSERT INTO courts (name, price_per_hour) VALUES"
+                + "('Futsal', 50000)," 
+                + "('Basket', 70000)," 
+                + "('Badminton', 40000)"
+                + "ON DUPLICATE KEY UPDATE name = name;";
+
             statement.execute(createCourtsTable);
             statement.execute(createUsersTable);
             statement.execute(createBookingsTable);
+            statement.execute(insertCourt);
 
-            // System.out.println("Table 'bookings' created or already exists.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

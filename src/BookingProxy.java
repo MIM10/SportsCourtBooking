@@ -8,20 +8,34 @@ class BookingProxy implements BookingService {
     }
 
     @Override
-    public void manageSchedule() {
-        if ("Admin".equalsIgnoreCase(role)) {
-            bookingService.manageSchedule();
+    public void addBooking(Booking booking) {
+        if ("User".equalsIgnoreCase(role)) {
+            bookingService.addBooking(booking);
         } else {
-            System.out.println("Access Denied: Only Admins can manage schedules.");
+            System.out.println("Access Denied: User hanya bisa booking.");
         }
     }
 
     @Override
-    public void viewReport() {
+    public void editBooking(int index, Booking booking) {
         if ("Admin".equalsIgnoreCase(role)) {
-            bookingService.viewReport();
+            bookingService.editBooking(index, booking);
         } else {
-            System.out.println("Access Denied: Only Admins can view reports.");
+            System.out.println("Access Denied: Hanya admin yang bisa mengedit booking.");
         }
+    }
+
+    @Override
+    public void deleteBooking(int index) {
+        if ("Admin".equalsIgnoreCase(role)) {
+            bookingService.deleteBooking(index);
+        } else {
+            System.out.println("Access Denied: Hanya admin yang bisa menghapus booking.");
+        }
+    }
+
+    @Override
+    public void listBookings() {
+        bookingService.listBookings();
     }
 }

@@ -1,4 +1,4 @@
-class Booking {
+public class Booking {
     private final String courtType;
     private final String timeSlot;
     private final String paymentMethod;
@@ -7,6 +7,18 @@ class Booking {
         this.courtType = builder.courtType;
         this.timeSlot = builder.timeSlot;
         this.paymentMethod = builder.paymentMethod;
+    }
+
+    public String getCourtType() {
+        return courtType;
+    }
+
+    public String getTimeSlot() {
+        return timeSlot;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
     public static class BookingBuilder {
@@ -36,6 +48,6 @@ class Booking {
 
     @Override
     public String toString() {
-        return "Booking [CourtType=" + courtType + ", TimeSlot=" + timeSlot + ", PaymentMethod=" + paymentMethod + "]";
+        return "Booking " + courtType + ", Pada Jam" + timeSlot;
     }
 }

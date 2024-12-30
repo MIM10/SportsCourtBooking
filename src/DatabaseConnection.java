@@ -10,14 +10,15 @@ class DatabaseConnection {
         try {
             // Connect to the existing database named "sportsdb"
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sportsdb", "root", "");
-            System.out.println("Connected to the database successfully.");
+            System.out.println("Koneksi ke databse berhasil.");
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to connect to the database.");
+            throw new RuntimeException("Gagal terhubung ke database.");
         }
     }
 
     public static DatabaseConnection getInstance() {
+        // Lazy Initialization
         if (instance == null) {
             instance = new DatabaseConnection();
         }

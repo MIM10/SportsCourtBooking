@@ -1,6 +1,4 @@
-abstract class Court {
-    protected String courtName;
-    protected double pricePerHour;
-
-    public abstract void displayDetails();
+public interface Court {
+    String getCourtName();
+    double getPrice();
 }

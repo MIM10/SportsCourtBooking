@@ -1,11 +1,14 @@
-class FutsalCourt extends Court {
-    public FutsalCourt() {
-        courtName = "Futsal Court";
-        pricePerHour = 100.0;
+class FutsalCourt implements Court {
+    private String courtName = "Futsal";
+    private double price = 50000;
+
+    @Override
+    public String getCourtName() {
+        return courtName;
     }
 
     @Override
-    public void displayDetails() {
-        System.out.println(courtName + " - $" + pricePerHour + " per hour");
+    public double getPrice() {
+        return price;
     }
 }
